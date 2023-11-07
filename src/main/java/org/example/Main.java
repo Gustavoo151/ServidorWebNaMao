@@ -1,6 +1,5 @@
 package org.example;
 
-import javax.swing.*;
 import java.io.*;
 import java.net.*;
 
@@ -16,31 +15,20 @@ public class Main {
                 is = new BufferedInputStream(is);  // cria um buffer para o fluxo de entrada
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is)); // cria um leitor de fluxo de entrada
-//                String s; // variável para armazenar as linhas lidas do fluxo de entrada
-//
-//                while((s = reader.readLine()) != null) {
-//                    System.out.println(s);
-//                    if (s.trim().isEmpty()) {  // se a linha lida for vazia, então encerra o loop
-//                        break;
-//                    }
-//                }
 
                 String resposta = "";  // variável para armazenar a resposta da requisição do cliente
                 String path = getRequestPath(reader.readLine()); // obtém o caminho da requisição do cliente
 
-//                System.out.println("Mostrando: " + reader.readLine());
-
-
                 if (path.equals("/endpoint1")) {
                     resposta = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" +
-                            "<html><title>Endpoint 1</title><body><h1>Endpoint 1</h1></body></html>";
+                            "<html><title>Endpoint 1 </title><body><h1>Endpoint 1 - Para http 200</h1></body></html>";
 
                 } else if (path.equals("/endpoint2")) {
                     resposta = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n" +
-                            "<html><title>Endpoint 2</title><body><h1>Endpoint 2</h1></body></html>";
+                            "<html><title>Endpoint 2</title><body><h1>Endpoint 2 - Para http 404</h1></body></html>";
                 } else if (path.equals("/endpoint3")) {
                     resposta = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\n\r\n" +
-                            "<html><title>Endpoint 3</title><body><h1>Endpoint 3</h1></body></html>";
+                            "<html><title>Endpoint 3</title><body><h1>Endpoint 3 - Para http 500</h1></body></html>";
                 } else {
                     resposta = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n" +
                             "<html><title>Not Found</title><body><h1>404 - Not Found</h1></body></html>";
