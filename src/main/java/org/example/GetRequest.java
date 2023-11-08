@@ -3,8 +3,9 @@ package org.example;
 import java.io.*;
 import java.net.*;
 
-public class Main {
+public class GetRequest {
     public static void main(String[] args) {
+
         try {
             ServerSocket servidor = new ServerSocket(2222);  // cria um socket de servidor na porta 2222
 
@@ -31,7 +32,25 @@ public class Main {
                     resposta = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/html\r\n\r\n" +
                             "<html><title>Endpoint 3</title><body><h1>Endpoint 3 - Para http 500</h1></body></html>";
 
-                } else { // caso o caminho não seja nenhum dos endpoints, retorna 404
+                } else if (path.equals("/requisicaopost")){
+                    String nome = "Joao";
+                    int idade = 30;
+
+                    // Formate os dados em x-www-form-urlencoded
+                    String dadosFormatados = "nome=" + nome + "&idade=" + idade;
+
+                    // Crie a resposta HTTP com os dados formatados
+                    resposta = "HTTP/1.1 200 OK\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n" + dadosFormatados;
+
+                }else if (path.equals("/requisicaopost1")){
+                    String nome = "Joao";
+                    int idade = 30;
+
+                    String dadosFormatados = "nome=" + nome + "&idade=" + idade;
+
+                    resposta = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n" + dadosFormatados;
+
+                }else { // caso o caminho não seja nenhum dos endpoints, retorna 404
                     resposta = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n" +
                             "<html><title>Not Found</title><body><h1>404 - Not Found</h1></body></html>";
                 }
